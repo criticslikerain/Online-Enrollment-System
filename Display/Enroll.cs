@@ -96,8 +96,8 @@ namespace Online_Enrollment_System{
 
 
                     case 1: Console.Beep(); StudentPage sp = new StudentPage(); sp.Display();  break;
-                    case 2: Console.Beep(); OldStudent os = new OldStudent(); os.Display(); break; 
-                    case 3: Console.Beep(); ReturneePage rp = new ReturneePage(); rp.Display(); break;
+                    case 2: Console.Beep(); Caller(); break; 
+                    case 3: Console.Beep(); Caller(); break; 
                     case 4: Console.Beep(); TransfereePage tp = new TransfereePage(); tp.Display(); break;
                     case 5: Console.Beep(); Thread.Sleep(100); OE oe = new OE(); oe.MainDisplay(); break; 
                 }
@@ -106,6 +106,11 @@ namespace Online_Enrollment_System{
             base.Display();
 
 
+        }
+
+        public static void Caller(){
+
+            Portal p = new Portal(); p.Display(); 
         }
 
 

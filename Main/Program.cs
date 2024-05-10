@@ -7,11 +7,11 @@ namespace Online_Enrollment_System{
     class Program  {
         public static void Main()
         {
-            OE run = new OE();   run.Beep();
+            OE run = new OE();   run.Oras();    
 
 
         }
-    }
+    } 
 }
 
 
@@ -26,7 +26,7 @@ dotnet add package System.Speech
 
 
 
-
+    
 
 
 */

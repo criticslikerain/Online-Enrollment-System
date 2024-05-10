@@ -2,13 +2,9 @@ using System.Speech.Synthesis;
 
 namespace Online_Enrollment_System{
 
+  class EducChooseCategory:Parent{
 
-
-  class SelectCourse:Parent{
-
-
-   
-      public override void Display(){
+          public override void Display(){
           
              SpeechSynthesizer run = new SpeechSynthesizer();
       run.SelectVoiceByHints(VoiceGender.Female);
@@ -30,14 +26,13 @@ namespace Online_Enrollment_System{
 
 
 
-                                                       _____      _           _    __     __                _____           __                       _    _____                          
-                                                      / ____|    | |         | |   \ \   / /               |  __ \         / _|                     | |  / ____|                         
-                                                     | (___   ___| | ___  ___| |_   \ \_/ /__  _   _ _ __  | |__) | __ ___| |_ ___ _ __ _ __ ___  __| | | |     ___  _   _ _ __ ___  ___ 
-                                                      \___ \ / _ \ |/ _ \/ __| __|   \   / _ \| | | | '__| |  ___/ '__/ _ \  _/ _ \ '__| '__/ _ \/ _` | | |    / _ \| | | | '__/ __|/ _ \
-                                                      ____) |  __/ |  __/ (__| |_     | | (_) | |_| | |    | |   | | |  __/ ||  __/ |  | | |  __/ (_| | | |___| (_) | |_| | |  \__ \  __/
-                                                     |_____/ \___|_|\___|\___|\__|    |_|\___/ \__,_|_|    |_|   |_|  \___|_| \___|_|  |_|  \___|\__,_|  \_____\___/ \__,_|_|  |___/\___|
-
-                                                     =====================================================================================================================================
+                                                       ____           _                 _        ____                                          ___     __     ____    _                 _         
+                                                      / ___|    ___  | |   ___    ___  | |_     / ___|   ___    _   _   _ __   ___    ___     / _ \   / _|   / ___|  | |_   _   _    __| |  _   _ 
+                                                      \___ \   / _ \ | |  / _ \  / __| | __|   | |      / _ \  | | | | | '__| / __|  / _ \   | | | | | |_    \___ \  | __| | | | |  / _` | | | | |
+                                                       ___) | |  __/ | | |  __/ | (__  | |_    | |___  | (_) | | |_| | | |    \__ \ |  __/   | |_| | |  _|    ___) | | |_  | |_| | | (_| | | |_| |
+                                                      |____/   \___| |_|  \___|  \___|  \__|    \____|  \___/   \__,_| |_|    |___/  \___|    \___/  |_|     |____/   \__|  \__,_|  \__,_|  \__, |
+                                                                                                                                                                                             |___/ 
+                                                     =============================================================================================================================================
 
 
 
@@ -45,24 +40,18 @@ namespace Online_Enrollment_System{
 
 
 
-                                                                                                   ［１］ Ｉｎｆｏｒｍａｔｉｏｎ Ｔｅｃｈｎｏｌｏｇｙ (BSIT)
+                                                                                                   ［１］ Bachelor of Science In Elementary Education
 
 
 
-                                                                                                   ［２］ Ａｒｔｓ Ａｎｄ Ｓｃｉｅｎｃｅ 
+                                                                                                   ［２］ Bachelor of Science In Secondary Education
 
 
 
-                                                                                                   ［３］ Ｅｄｕｃａｔｉｏｎ  
+                                                                                                   ［３］ B A C K  
 
 
 
-                                                                                                   ［４］ Ｅｎｇｉｎｅｅｒｉｎｇ
-
-
-
-
-                                                       ［０］ Ｖｉｅｗ Ｃｏｕｒｓｅ's  Ｄｅｓｃｒｉｐｔｉｏｎ                                                     ［５］ Ｄｉｓｒｅｇａｒｄ Ｐｒｏｃｅｓｓ 
 
 
 
@@ -71,11 +60,11 @@ namespace Online_Enrollment_System{
 
 
         ");
-            run.Speak("Select your preferred Course");
+        run.Speak("Select your couse program");
            Console.SetCursorPosition(patakilid - 56, Console.CursorTop - 3);
         choice = Console.ReadLine();
 
-        while(!double.TryParse(choice, out input) || input < 0 || input > 5){
+        while(!double.TryParse(choice, out input) || input < 1 || input > 3){
 
           Console.ForegroundColor = ConsoleColor.Magenta; 
           Console.Write(@"
@@ -92,12 +81,9 @@ namespace Online_Enrollment_System{
 
         switch(input){
 
-          case 0: Console.Beep(); CourseDescription cd = new CourseDescription(); cd.Display(); break;
-          case 1: Console.Beep(); BSIT it = new BSIT(); it.Display(); break;
-          case 2: Console.Beep(); ArtsAndScience ac = new ArtsAndScience(); ac.Display(); break;
-          case 3: Console.Beep(); EducChooseCategory ed = new EducChooseCategory(); ed.Display(); break; 
-          case 4: Console.Beep(); EngChooseStudy eng = new EngChooseStudy(); eng.Display(); break;
-          case 5: Console.Beep(); run.Speak("Disregarding Process..."); OE oe = new OE(); oe.MainDisplay(); break;
+          case 1: Console.Beep(); BSME bsme = new BSME(); bsme.Display(); break;
+          case 2: Console.Beep(); BSCE bsce = new BSCE(); bsce.Display(); break;
+          case 3: Console.Beep(); SelectCourse sc = new SelectCourse(); sc.Display(); break;
          }
 
 
@@ -108,11 +94,6 @@ namespace Online_Enrollment_System{
 
         base.Display();
       }
-
-        
-
-
-
 
     }
 }

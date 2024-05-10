@@ -38,16 +38,16 @@ namespace Online_Enrollment_System{
                                                   =======================================================================================================================                                                                                                                      
                                                                                                                       
                                         
-                                                                                [1] Bachelor Of Science In Information Technology (BSIT)
+                                                                                [1] Information Technology (BSIT)
 
 
-                                                                                [2] College Of Art And Sciences 
+                                                                                [2] Arts And Science's  
 
 
-                                                                                [3] Bachelor of Science In Education (BSED)
+                                                                                [3] Education (BSED)
 
 
-                                                                                [4] Bachelor of Science In Engineering (BE) 
+                                                                                [4] Engineering (BE) 
 
                                                                                 
                                                                                 [5] Go Back
@@ -139,17 +139,6 @@ namespace Online_Enrollment_System{
 
 
 
-                                                            Associate in Computer Technology (ACT)
-                                                            ======================================
-
-                                                            A two-year Associate in Computer Technology (ACT) program can land the graduate in a “technical” job in the field. 
-                                                            This program can meet the needs of students who do not intend to become IT professionals, but want to focus on areas of 
-                                                            knowledge and skills that will be beneficial to anyone wishing to enter the computer systems field in related occupations.
-
-
-                                                            Students in this program learn advanced technical skills that are essential for computer and information systems jobs. 
-                                                            Students also learn to understand and guide the work of their colleagues and staff and explain the work in non-technical
-                                                            terms to senior managers and potential customers.
 
 
               
@@ -295,17 +284,14 @@ namespace Online_Enrollment_System{
 
                                                             Major in:
 
-                                                            - Pre-Elementary Education
                                                             - Elementary Education
-                                                            - Special Education (SPED)
 
 
                                                             Bachelor of Science in Secondary Education
                                                             ==========================================
 
                                                             Major in:
-
-                                                            - Mathematics
+  
                                                             - English
           
 
@@ -361,16 +347,7 @@ namespace Online_Enrollment_System{
 
 
                                                             P R O G R A M  O V E R V I E W : 
-
-                                                            Bachelor of Science in Industrial Engineering (BSIE)
-                                                            ====================================================
-
-
-                                                            A Bachelor of Science in Industrial Engineering(BSIE) degree is an undergraduate five-year degree course with emphasis 
-                                                            on engineering economics, thermodynamics, human factors engineering, production planning and control, engineering 
-                                                            laws, occupational safety and health, industrial organization and management, facilities planning and design,
-                                                            environmental science, statistical quality control, project feasibility study, systems engineering, design project and 
-                                                            management information system.
+                                              
 
 
                                                             Bachelor of Science in Mechanical Engineering (BSME)

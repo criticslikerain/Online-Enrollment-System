@@ -80,6 +80,7 @@ class OE: Parent{
 
       ");
       Console.SetCursorPosition(patakilid - 48, Console.CursorTop - 13);
+      run.Speak($"{greet2}");
       choice = Console.ReadLine();
       while(!double.TryParse(choice, out input) || input < 1 || input > 4) {
 
