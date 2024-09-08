@@ -5,6 +5,8 @@ namespace Online_Enrollment_System{
 
   class WhenLoggedIn:Parent{
 
+        private static Data user = new Data();
+
         public override void Display()
         {
                 SpeechSynthesizer run = new SpeechSynthesizer();
@@ -41,8 +43,8 @@ ________________________________________________________________________________
                                                House number: {Online_Enrollment_System.Portal.house_num}
 
                                                Year Level : {Online_Enrollment_System.Portal.year_lvl}                  
-
-
+                                               Sem Enrolled : {Online_Enrollment_System.Portal.sem}
+                                               Course : {Online_Enrollment_System.Portal.user_course}
 
 
 
@@ -60,6 +62,8 @@ ________________________________________________________________________________
                                                                                                       Copyright 2024 Group2. All rights reserved.
 ____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
           ");
+          Console.SetCursorPosition(patakilid - 58, Console.CursorTop - 7);
+          choice = Console.ReadLine(); 
 
 
           while(!double.TryParse(choice, out input) || input < 1 || input > 3){
@@ -78,7 +82,28 @@ ________________________________________________________________________________
                     run.Speak("Invalid input!");
                     Display();   
           }
+          if(user.Status == "Enrolled" || user.Returnee_Status == "Enrolled"){
 
+            Console.ForegroundColor = ConsoleColor.Magenta;
+ Console.Write(@"
+
+
+
+
+                    
+                                                                                                       ╔═════════════════════════╗ 
+                                                                                                       ║  I  N  V  A  L  I D !   ║ 
+                                                                                                       ╚═════════════════════════╝                                         
+                    "); 
+            run.Speak("Can't Enroll because You are already enrolled!");
+          }
+
+          switch(input){
+
+            case 1: Console.Beep(); CheckStudentYearLvl.KnowTheYear(); break;
+            case 2: Console.Beep(); Forgot forgot = new Forgot(); forgot.Display(); break;
+            case 3: Console.Beep(); Portal pt = new Portal(); pt.Display(); break; 
+          }
          
         
         

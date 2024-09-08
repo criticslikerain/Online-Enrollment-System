@@ -11,10 +11,10 @@ class StudentPage:Parent{
         string surname;
         string name;
         string middle_initial;
-        string suffix;
-        string month;
-        string day;
-        string year;
+        public static string suffix;
+        public static string month;
+        public static string day;
+        public static string year;
         string birthdate; 
         public static string gender;
         string city;
@@ -29,6 +29,7 @@ class StudentPage:Parent{
       run.SelectVoiceByHints(VoiceGender.Female);
 
           do{ 
+            surname:
           Console.Clear();
           Console.ResetColor();
           Console.ForegroundColor = ConsoleColor.DarkCyan;
@@ -69,12 +70,16 @@ class StudentPage:Parent{
           ");
            Console.SetCursorPosition(patakilid - 94, Console.CursorTop - 20);
            surname = Console.ReadLine().ToUpper();
-          
+          if(surname.Length == 0){
+
+           run.Speak("Field Cannot be Empty!");
+          goto surname;
+          }
 
 
 
 
-
+           name: 
             Console.Clear();
             Console.Write($@"       
 
@@ -113,7 +118,13 @@ class StudentPage:Parent{
 
            Console.SetCursorPosition(patakilid - 90, Console.CursorTop - 17);
            name = Console.ReadLine().ToUpper();
+              if(name.Length == 0){
 
+           run.Speak("Field Cannot be Empty!");
+          goto name;
+          }
+
+            mi:
              Console.Clear();
             Console.Write($@"       
 
@@ -152,8 +163,12 @@ class StudentPage:Parent{
 
            Console.SetCursorPosition(patakilid - 89, Console.CursorTop - 14);
            middle_initial = Console.ReadLine().ToUpper();
+            if(middle_initial.Length == 0){
 
-
+           run.Speak("Field Cannot be Empty!");
+          goto mi;
+          }
+            suffix: 
             Console.Clear();
             Console.Write($@"       
 
@@ -192,7 +207,11 @@ class StudentPage:Parent{
 
           Console.SetCursorPosition(patakilid - 88, Console.CursorTop - 11);
           suffix = Console.ReadLine().ToUpper();
+            if(suffix.Length == 0){
 
+              StudentPage.suffix = "N/A";
+              
+          }
             gender: 
             Console.ForegroundColor = ConsoleColor.DarkCyan;
              Console.Clear();
@@ -300,7 +319,18 @@ class StudentPage:Parent{
 
           Console.SetCursorPosition(patakilid - 96, Console.CursorTop - 7);
           month  = Console.ReadLine().ToUpper();
+             if(month.Length == 0){
 
+            run.Speak("Field Cannot be empty!");
+            goto month;
+          }
+          while(!double.TryParse(month, out input) || input < 1 || input > 12){
+
+              run.Speak("Input out of range!");
+              goto month;
+
+          }
+            day:
            Console.Clear();
             Console.Write($@"       
 
@@ -342,7 +372,34 @@ class StudentPage:Parent{
           ");
           Console.SetCursorPosition(patakilid - 97, Console.CursorTop - 6);
           day = Console.ReadLine().ToUpper();
+          if(day.Length == 0){
 
+            run.Speak("Field Cannot be empty!");
+            goto day;
+          }
+
+
+          while(!double.TryParse(day, out input) || input < 1 || input > 31) {
+
+            run.Speak("Input out of range!");
+            goto day;
+          }
+               if(month != "2") {
+               goto year;
+            }
+
+          while(month == "2" && day == "29" || day == "30" || day =="31"){
+
+            run.Speak("Input out of range!");
+            goto day;
+
+    
+          }
+             
+            
+
+
+          year:
            Console.Clear();
             Console.Write($@"       
 
@@ -384,6 +441,20 @@ class StudentPage:Parent{
           ");
             Console.SetCursorPosition(patakilid - 96, Console.CursorTop - 5);
           year = Console.ReadLine().ToUpper();
+             if(year.Length == 0){
+
+            run.Speak("Field Cannot be empty!");
+            goto year;
+          }
+
+           while(!double.TryParse(year, out input) || input < 1900 || input > 2100) {
+
+            run .Speak("Input out of range!");
+            goto year;
+          }
+
+        
+
 
 
            Console.Clear();
@@ -616,6 +687,7 @@ class StudentPage:Parent{
       run.Rate = 1;
 
             do{   
+              city:
                   Console.ResetColor();
                   Console.Clear();
                   Console.ForegroundColor = ConsoleColor.DarkCyan;
@@ -647,13 +719,13 @@ class StudentPage:Parent{
            Console.SetCursorPosition(patakilid - 100, Console.CursorTop - 13);
            city = Console.ReadLine().ToUpper();
 
-           if (city == "")
-           {
-               Console.WriteLine("Field cannot be empty!");
-               
-           }
+               if(city.Length == 0){
 
+            run.Speak("Field Cannot be empty!");
+            goto city;
+          }
 
+              area_code:
             Console.ResetColor();
              Console.ForegroundColor = ConsoleColor.DarkCyan;
                   Console.Clear();
@@ -683,7 +755,14 @@ class StudentPage:Parent{
           ");
            Console.SetCursorPosition(patakilid - 92, Console.CursorTop - 10);
            area_code = Console.ReadLine().ToUpper();
+           
+               if(area_code.Length == 0){
 
+            run.Speak("Field Cannot be empty!");
+            goto area_code;
+          }
+
+                  street:
                  Console.ResetColor();
                   Console.ForegroundColor = ConsoleColor.DarkCyan;
                   Console.Clear();
@@ -713,7 +792,14 @@ class StudentPage:Parent{
           ");
           Console.SetCursorPosition(patakilid - 97, Console.CursorTop - 7);
           street = Console.ReadLine().ToUpper();
+            
+               if(street.Length == 0){
 
+            run.Speak("Field Cannot be empty!");
+            goto street;
+          }
+
+            house_num:
             Console.ResetColor();
              Console.ForegroundColor = ConsoleColor.DarkCyan;
                   Console.Clear();
@@ -743,6 +829,12 @@ class StudentPage:Parent{
           ");
           Console.SetCursorPosition(patakilid - 86, Console.CursorTop - 4);
           house_num = Console.ReadLine().ToUpper();
+          
+               if(house_num.Length == 0){
+
+            run.Speak("Field Cannot be empty!");
+            goto house_num;
+          }
 
          
                   Console.Clear();
@@ -814,6 +906,8 @@ class StudentPage:Parent{
 
     return gender;
 }
+
+
 
     
 

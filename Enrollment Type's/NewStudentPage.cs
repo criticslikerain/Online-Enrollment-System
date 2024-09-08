@@ -1,9 +1,10 @@
 using System.Speech.Synthesis;
 
+
 namespace Online_Enrollment_System{
 
 
-class TransfereeStudentPage:Parent{
+class NewStudentPage:Parent{
       
        private static Data user = new Data();
        Information manage = new Information();

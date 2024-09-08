@@ -6,7 +6,7 @@ using System.Speech.Synthesis;
 namespace Online_Enrollment_System{
     class Program  {
         public static void Main()
-        {
+        {   
             OE run = new OE();   run.Oras();    
 
 
@@ -19,7 +19,7 @@ namespace Online_Enrollment_System{
 
 
 // DEPENDENCIES 
-/*
+/*  
 
 
 dotnet add package System.Speech

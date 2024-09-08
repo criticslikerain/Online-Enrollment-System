@@ -82,6 +82,12 @@ namespace Online_Enrollment_System{
 
            return choice;
         }
+
+          public static Random random = new Random();
+public static int randomNumber = random.Next(10000, 99999); 
+
+public static string transactionNumber = DateTime.Now.ToString("yyyyMMddHHmmss"); 
+public static string transactionIdentifier = transactionNumber + randomNumber.ToString();
   
 
 

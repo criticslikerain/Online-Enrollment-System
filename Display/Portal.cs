@@ -17,6 +17,8 @@ namespace Online_Enrollment_System{
         public static string house_num;
         public static string year_lvl;
         public static string id;
+        public static string sem;
+        public static string user_course;
 
         private static Data user = new Data();
         public override void Display()
@@ -30,7 +32,7 @@ namespace Online_Enrollment_System{
            Console.Clear();
            Console.ResetColor();
             Console.WriteLine(@"
-            
+'B' to go back.            
              
                                                                                                              ▓▓▓▓▓▓    
                                                                                                           ▓▓▓▓▓▓▓▓▓▓▓▓  
@@ -67,7 +69,10 @@ namespace Online_Enrollment_System{
      
           Console.SetCursorPosition(patakilid - 80, Console.CursorTop - 8);
           string username = Console.ReadLine();
+          if(username == "b" || username =="B"){
 
+                 OE oe = new OE();   oe.Oras();    
+          }
       
           Console.SetCursorPosition(patakilid - 83, Console.CursorTop + 2);
           string password = Hide.Tago();
@@ -89,6 +94,8 @@ namespace Online_Enrollment_System{
               house_num = user.House_num;
               year_lvl = user.Year_lvl;
               id = user.ID;
+              sem = user.Sem;
+              user_course = user.User_Course;
               WhenLoggedIn wli = new WhenLoggedIn(); wli.Display();
           }
 
@@ -107,6 +114,8 @@ namespace Online_Enrollment_System{
               house_num = user.Returnee_House_num;
               year_lvl = user.Returnee_Year_lvl;
                id = user.returnee_ID;
+              sem = user.Returnee_sem;
+               user_course = user.Returnee_User_Course;
               WhenLoggedIn wli = new WhenLoggedIn(); wli.Display();
           }
 
@@ -136,6 +145,8 @@ namespace Online_Enrollment_System{
               house_num = user.House_num;
               year_lvl = user.Year_lvl;
                id = user.ID;
+                sem = user.Sem;
+                 user_course = user.User_Course;
               WhenLoggedIn wli = new WhenLoggedIn(); wli.Display();
           }
 
@@ -155,6 +166,8 @@ namespace Online_Enrollment_System{
               house_num = user.Returnee_House_num;
               year_lvl = user.Returnee_Year_lvl;
                id = user.returnee_ID;
+                   sem = user.Returnee_sem;
+                    user_course = user.Returnee_User_Course;
               WhenLoggedIn wli = new WhenLoggedIn(); wli.Display();
           }
               
@@ -184,7 +197,8 @@ namespace Online_Enrollment_System{
               house_num = user.House_num;
               year_lvl = user.Year_lvl;
                id = user.ID;
-              
+               sem = user.Sem;
+                user_course = user.User_Course;
               WhenLoggedIn wli = new WhenLoggedIn(); wli.Display();
           }
 
@@ -204,7 +218,8 @@ namespace Online_Enrollment_System{
               house_num = user.Returnee_House_num;
               year_lvl = user.Returnee_Year_lvl;
                id = user.returnee_ID;
-              
+                  sem = user.Returnee_sem;
+                   user_course = user.Returnee_User_Course;
               WhenLoggedIn wli = new WhenLoggedIn(); wli.Display();
           }
               
@@ -231,6 +246,9 @@ namespace Online_Enrollment_System{
               street = user.Street;
               house_num = user.House_num;
               year_lvl = user.Year_lvl;
+              year_lvl = user.ID;
+               sem = user.Sem;
+                user_course = user.User_Course;
               WhenLoggedIn wli = new WhenLoggedIn(); wli.Display();
           }
 
@@ -249,6 +267,8 @@ namespace Online_Enrollment_System{
               street = user.Returnee_Street;
               house_num = user.Returnee_House_num;
               year_lvl = user.Returnee_Year_lvl;
+              sem = user.Returnee_sem;
+               user_course = user.Returnee_User_Course;
               WhenLoggedIn wli = new WhenLoggedIn(); wli.Display();
           }
         

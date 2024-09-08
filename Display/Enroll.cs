@@ -95,7 +95,7 @@ namespace Online_Enrollment_System{
                 switch(input){
 
 
-                    case 1: Console.Beep(); StudentPage sp = new StudentPage(); sp.Display();  break;
+                    case 1: Console.Beep(); NewStudentPage sp = new NewStudentPage(); sp.Display();  break;
                     case 2: Console.Beep(); Caller(); break; 
                     case 3: Console.Beep(); Caller(); break; 
                     case 4: Console.Beep(); TransfereePage tp = new TransfereePage(); tp.Display(); break;

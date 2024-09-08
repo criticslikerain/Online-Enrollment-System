@@ -97,8 +97,8 @@ class OE: Parent{
 
         case 1: Console.Beep(); Enroll enroll = new Enroll(); enroll.Display(); break;  
         case 2: Console.Beep(); Portal portal = new Portal(); portal.Display(); break;
-        case 3: Console.Beep(); break;
-        case 4: Console.Clear(); Console.Beep(); 
+        case 3: Console.Beep(); Forgot forgot = new Forgot(); forgot.Display(); break;
+        case 4: Console.Clear(); Console.Beep();
 
       Console.WriteLine("\n\n");
       Console.Clear();

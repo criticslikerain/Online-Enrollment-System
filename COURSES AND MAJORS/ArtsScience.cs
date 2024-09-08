@@ -95,7 +95,7 @@ namespace Online_Enrollment_System{
 
 
 
-        class FirstYear() {
+        public class FirstYear() {
               static List<string> na_add = new List<string>();
           static List<string> subjectcodes = new List<string> {
     "STS", "UTS", "MATHWORLD", "FIL1", "PE1", "NSTP1", "HIST"
@@ -165,7 +165,7 @@ namespace Online_Enrollment_System{
 
           while(input == "b"){
 
-            ArtsAndScience it = new ArtsAndScience(); it.Display();
+            Enroll enroll = new Enroll(); enroll.Display(); 
           }
 
 
@@ -216,14 +216,172 @@ namespace Online_Enrollment_System{
 
   
 
-      public static void DisplaySubjects() {
+     public static void DisplaySubjects() {
+                SpeechSynthesizer run = new SpeechSynthesizer();
+      run.SelectVoiceByHints(VoiceGender.Female);
+      run.Rate = 1;
 
-             Console.Write("YEY");
-             foreach(string input in na_add) {
-              Console.WriteLine(input);
-             }
-             Console.ReadKey();
+              do{
+                   Console.Clear();
+                   Console.ResetColor();
+          Console.ForegroundColor = ConsoleColor.DarkCyan;
+          Console.Write(@"
+
+
+                                                               - T H I S  S U B J E C T  E N L I S T M E N T  I S  I R R E V O C A B L E -
+                                                                                  D O  Y O U  W A N T  T O  C O N T I N U E ? 
+
+                                                                                                  [1] Y E S 
+
+                                                                                                  [2] N O
+
+
+                                                                                            O T H E R  O P T I O N
+                                                                                          -------------------------
+
+                                                                                              [3] R E - E D I T 
+
+
+
+                                                                                 C H O I C E : 
+
+
+
+          
+          ");
+          Console.SetCursorPosition(patakilid - 80, Console.CursorTop - 5);
+          choice = Console.ReadLine();
+
+          while(!double.TryParse(choice,out input) || input < 1 || input > 3){
+
+            Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.Write(@"
+                                                                                               I N V A L I D !       
+            ");
+            run.Speak("Invalid input!");
+           
+
+          }
+
+
+          switch(input){
+
+            case 1: Console.Beep(); Pay(); break; 
+            case 2: Console.Beep(); Thread.Sleep(100); run.Speak("Returning..."); Enroll enrl = new Enroll(); enrl.Display(); break;
+            case 3: Console.Beep(); EnlistSubjects(); break;
+          }
+
+
+        }while(false);
+             
       }
+
+
+          public static void Pay(){
+                        SpeechSynthesizer run = new SpeechSynthesizer();
+      run.SelectVoiceByHints(VoiceGender.Female);
+      run.Rate = 1;
+              do{
+              Console.Clear();
+              Console.ResetColor(); 
+              Console.Write(@"  
+                                                                                S U B J E C T S  E N L I S T E D :
+              ");
+                foreach(string input in na_add) {
+              Console.Write($@"
+                                                                                         
+                                                                                           {input}
+                ");
+             }
+
+             Console.Write(@"
+             
+
+                                                                    E N R O L L M E N T  F E E
+
+                                                                        Choose your payment: 
+                                                                        [1]. GCASH
+                                                                        [2]. Over The Counter
+
+                                                                                  -->: 
+             ");
+              Console.SetCursorPosition(patakilid - 88, Console.CursorTop - 1);
+             choice = Console.ReadLine();
+
+             while(!double.TryParse(choice,out input) || input < 1 || input > 2) {
+
+             Console.ForegroundColor = ConsoleColor.Magenta;
+             Console.Write(@"                                    
+
+                                                                           Invalid Input!
+             
+             ");
+            run.Speak("invalid input!");
+            Pay();
+             }
+
+             if(input == 1){
+              payment: 
+              Console.ResetColor();
+              Console.Write(@"
+                                                                        Enter payment: 
+              ");
+               Console.SetCursorPosition(patakilid - 88, Console.CursorTop - 1);
+              string gcash = Console.ReadLine(); 
+              double pay;
+              while(!double.TryParse(gcash , out pay)){
+
+                run.Speak("Invalid input");
+                goto payment;
+              }
+              if(pay != 500 || pay != 500.00) {
+                      Console.ForegroundColor = ConsoleColor.Magenta;
+                Console.Write(@"
+
+                                                                     Pay only P500.00
+                ");
+                run.Speak("Pay only P500!");
+                goto payment;
+              }
+
+              Console.Write(@"
+                
+                                                                 ▀█▀ █░█ ▄▀█ █▄░█ █▄▀ █▀   █▀▀ █▀█ █▀█   █▀▀ █▄░█ █▀█ █▀█ █░░ █░░ █ █▄░█ █▀▀   █
+                                                                 ░█░ █▀█ █▀█ █░▀█ █░█ ▄█   █▀░ █▄█ █▀▄   ██▄ █░▀█ █▀▄ █▄█ █▄▄ █▄▄ █ █░▀█ █▄█   ▄
+
+
+
+                                                                                          Press any key to contine...
+              ");
+              run.Speak("Thank you for enrolling!");
+                  Console.SetCursorPosition(patakilid - 58, Console.CursorTop - 1);
+                  Console.ReadKey();
+                  Thread.Sleep(100); run.Speak("Returning..."); Enroll enrl = new Enroll(); enrl.Display();   
+             }
+
+             if(input == 2){
+              Console.Write(@"
+                                                        Your Enrollment Will be on hold before you make a transaction. Thank you.                             
+                ");
+              run.Speak("Your Enrollment Will be on hold before you make a transaction. Thank you");
+               Console.SetCursorPosition(patakilid - 80, Console.CursorTop - 5);
+              Console.Write(@"
+
+                                                                          
+
+
+
+
+                                                                          
+                                                                           Press any key to continue... 
+              ");
+              Console.ReadKey();
+              Thread.Sleep(100); run.Speak("Returning..."); Enroll enrl = new Enroll(); enrl.Display(); 
+
+             }
+
+              }while(false);
+          }
 
          public static void TigDelete(){
         Console.ForegroundColor = ConsoleColor.DarkGray;
@@ -261,7 +419,7 @@ namespace Online_Enrollment_System{
 
  
 
-          class FirstYear_SecondSem(){
+          public class FirstYear_SecondSem(){
           
              static List<string> na_add = new List<string>();
           static List<string> subjectcodes = new List<string> {
@@ -332,7 +490,7 @@ namespace Online_Enrollment_System{
 
           while(input == "b"){
 
-            ArtsAndScience it = new ArtsAndScience(); it.Display();
+           Enroll enroll = new Enroll(); enroll.Display(); 
           }
 
 
@@ -383,14 +541,172 @@ namespace Online_Enrollment_System{
 
   
 
-      public static void DisplaySubjects() {
+     public static void DisplaySubjects() {
+                SpeechSynthesizer run = new SpeechSynthesizer();
+      run.SelectVoiceByHints(VoiceGender.Female);
+      run.Rate = 1;
 
-             Console.Write("YEY");
-             foreach(string input in na_add) {
-              Console.WriteLine(input);
-             }
-             Console.ReadKey();
+              do{
+                   Console.Clear();
+                   Console.ResetColor();
+          Console.ForegroundColor = ConsoleColor.DarkCyan;
+          Console.Write(@"
+
+
+                                                               - T H I S  S U B J E C T  E N L I S T M E N T  I S  I R R E V O C A B L E -
+                                                                                  D O  Y O U  W A N T  T O  C O N T I N U E ? 
+
+                                                                                                  [1] Y E S 
+
+                                                                                                  [2] N O
+
+
+                                                                                            O T H E R  O P T I O N
+                                                                                          -------------------------
+
+                                                                                              [3] R E - E D I T 
+
+
+
+                                                                                 C H O I C E : 
+
+
+
+          
+          ");
+          Console.SetCursorPosition(patakilid - 80, Console.CursorTop - 5);
+          choice = Console.ReadLine();
+
+          while(!double.TryParse(choice,out input) || input < 1 || input > 3){
+
+            Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.Write(@"
+                                                                                               I N V A L I D !       
+            ");
+            run.Speak("Invalid input!");
+           
+
+          }
+
+
+          switch(input){
+
+            case 1: Console.Beep(); Pay(); break; 
+            case 2: Console.Beep(); Thread.Sleep(100); run.Speak("Returning..."); Enroll enrl = new Enroll(); enrl.Display(); break;
+            case 3: Console.Beep(); EnlistSubjects(); break;
+          }
+
+
+        }while(false);
+             
       }
+
+
+          public static void Pay(){
+                        SpeechSynthesizer run = new SpeechSynthesizer();
+      run.SelectVoiceByHints(VoiceGender.Female);
+      run.Rate = 1;
+              do{
+              Console.Clear();
+              Console.ResetColor(); 
+              Console.Write(@"  
+                                                                                S U B J E C T S  E N L I S T E D :
+              ");
+                foreach(string input in na_add) {
+              Console.Write($@"
+                                                                                         
+                                                                                           {input}
+                ");
+             }
+
+             Console.Write(@"
+             
+
+                                                                    E N R O L L M E N T  F E E
+
+                                                                        Choose your payment: 
+                                                                        [1]. GCASH
+                                                                        [2]. Over The Counter
+
+                                                                                  -->: 
+             ");
+              Console.SetCursorPosition(patakilid - 88, Console.CursorTop - 1);
+             choice = Console.ReadLine();
+
+             while(!double.TryParse(choice,out input) || input < 1 || input > 2) {
+
+             Console.ForegroundColor = ConsoleColor.Magenta;
+             Console.Write(@"                                    
+
+                                                                           Invalid Input!
+             
+             ");
+            run.Speak("invalid input!");
+            Pay();
+             }
+
+             if(input == 1){
+              payment: 
+              Console.ResetColor();
+              Console.Write(@"
+                                                                        Enter payment: 
+              ");
+               Console.SetCursorPosition(patakilid - 88, Console.CursorTop - 1);
+              string gcash = Console.ReadLine(); 
+              double pay;
+              while(!double.TryParse(gcash , out pay)){
+
+                run.Speak("Invalid input");
+                goto payment;
+              }
+              if(pay != 500 || pay != 500.00) {
+                      Console.ForegroundColor = ConsoleColor.Magenta;
+                Console.Write(@"
+
+                                                                     Pay only P500.00
+                ");
+                run.Speak("Pay only P500!");
+                goto payment;
+              }
+
+              Console.Write(@"
+                
+                                                                 ▀█▀ █░█ ▄▀█ █▄░█ █▄▀ █▀   █▀▀ █▀█ █▀█   █▀▀ █▄░█ █▀█ █▀█ █░░ █░░ █ █▄░█ █▀▀   █
+                                                                 ░█░ █▀█ █▀█ █░▀█ █░█ ▄█   █▀░ █▄█ █▀▄   ██▄ █░▀█ █▀▄ █▄█ █▄▄ █▄▄ █ █░▀█ █▄█   ▄
+
+
+
+                                                                                          Press any key to contine...
+              ");
+              run.Speak("Thank you for enrolling!");
+                  Console.SetCursorPosition(patakilid - 58, Console.CursorTop - 1);
+                  Console.ReadKey();
+                  Thread.Sleep(100); run.Speak("Returning..."); Enroll enrl = new Enroll(); enrl.Display();   
+             }
+
+             if(input == 2){
+              Console.Write(@"
+                                                        Your Enrollment Will be on hold before you make a transaction. Thank you.                             
+                ");
+              run.Speak("Your Enrollment Will be on hold before you make a transaction. Thank you");
+               Console.SetCursorPosition(patakilid - 80, Console.CursorTop - 5);
+              Console.Write(@"
+
+                                                                          
+
+
+
+
+                                                                          
+                                                                           Press any key to continue... 
+              ");
+              Console.ReadKey();
+              Thread.Sleep(100); run.Speak("Returning..."); Enroll enrl = new Enroll(); enrl.Display(); 
+
+             }
+
+              }while(false);
+          }
 
          public static void TigDelete(){
         Console.ForegroundColor = ConsoleColor.DarkGray;
@@ -428,7 +744,7 @@ namespace Online_Enrollment_System{
 
 
 //=============================================================================================//
-          class SecondYear(){
+          public class SecondYear(){
 
 
                  static List<string> na_add = new List<string>();
@@ -500,7 +816,7 @@ namespace Online_Enrollment_System{
 
           while(input == "b"){
 
-            ArtsAndScience it = new ArtsAndScience(); it.Display();
+             Enroll enroll = new Enroll(); enroll.Display(); 
           }
 
 
@@ -551,15 +867,172 @@ namespace Online_Enrollment_System{
 
   
 
-      public static void DisplaySubjects() {
+     public static void DisplaySubjects() {
+                SpeechSynthesizer run = new SpeechSynthesizer();
+      run.SelectVoiceByHints(VoiceGender.Female);
+      run.Rate = 1;
 
-             Console.Write("YEY");
-             foreach(string input in na_add) {
-              Console.WriteLine(input);
-             }
-             Console.ReadKey();
+              do{
+                   Console.Clear();
+                   Console.ResetColor();
+          Console.ForegroundColor = ConsoleColor.DarkCyan;
+          Console.Write(@"
+
+
+                                                               - T H I S  S U B J E C T  E N L I S T M E N T  I S  I R R E V O C A B L E -
+                                                                                  D O  Y O U  W A N T  T O  C O N T I N U E ? 
+
+                                                                                                  [1] Y E S 
+
+                                                                                                  [2] N O
+
+
+                                                                                            O T H E R  O P T I O N
+                                                                                          -------------------------
+
+                                                                                              [3] R E - E D I T 
+
+
+
+                                                                                 C H O I C E : 
+
+
+
+          
+          ");
+          Console.SetCursorPosition(patakilid - 80, Console.CursorTop - 5);
+          choice = Console.ReadLine();
+
+          while(!double.TryParse(choice,out input) || input < 1 || input > 3){
+
+            Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.Write(@"
+                                                                                               I N V A L I D !       
+            ");
+            run.Speak("Invalid input!");
+           
+
+          }
+
+
+          switch(input){
+
+            case 1: Console.Beep(); Pay(); break; 
+            case 2: Console.Beep(); Thread.Sleep(100); run.Speak("Returning..."); Enroll enrl = new Enroll(); enrl.Display(); break;
+            case 3: Console.Beep(); EnlistSubjects(); break;
+          }
+
+
+        }while(false);
+             
       }
 
+
+          public static void Pay(){
+                        SpeechSynthesizer run = new SpeechSynthesizer();
+      run.SelectVoiceByHints(VoiceGender.Female);
+      run.Rate = 1;
+              do{
+              Console.Clear();
+              Console.ResetColor(); 
+              Console.Write(@"  
+                                                                                S U B J E C T S  E N L I S T E D :
+              ");
+                foreach(string input in na_add) {
+              Console.Write($@"
+                                                                                         
+                                                                                           {input}
+                ");
+             }
+
+             Console.Write(@"
+             
+
+                                                                    E N R O L L M E N T  F E E
+
+                                                                        Choose your payment: 
+                                                                        [1]. GCASH
+                                                                        [2]. Over The Counter
+
+                                                                                  -->: 
+             ");
+              Console.SetCursorPosition(patakilid - 88, Console.CursorTop - 1);
+             choice = Console.ReadLine();
+
+             while(!double.TryParse(choice,out input) || input < 1 || input > 2) {
+
+             Console.ForegroundColor = ConsoleColor.Magenta;
+             Console.Write(@"                                    
+
+                                                                           Invalid Input!
+             
+             ");
+            run.Speak("invalid input!");
+            Pay();
+             }
+
+             if(input == 1){
+              payment: 
+              Console.ResetColor();
+              Console.Write(@"
+                                                                        Enter payment: 
+              ");
+               Console.SetCursorPosition(patakilid - 88, Console.CursorTop - 1);
+              string gcash = Console.ReadLine(); 
+              double pay;
+              while(!double.TryParse(gcash , out pay)){
+
+                run.Speak("Invalid input");
+                goto payment;
+              }
+              if(pay != 500 || pay != 500.00) {
+                      Console.ForegroundColor = ConsoleColor.Magenta;
+                Console.Write(@"
+
+                                                                     Pay only P500.00
+                ");
+                run.Speak("Pay only P500!");
+                goto payment;
+              }
+
+              Console.Write(@"
+                
+                                                                 ▀█▀ █░█ ▄▀█ █▄░█ █▄▀ █▀   █▀▀ █▀█ █▀█   █▀▀ █▄░█ █▀█ █▀█ █░░ █░░ █ █▄░█ █▀▀   █
+                                                                 ░█░ █▀█ █▀█ █░▀█ █░█ ▄█   █▀░ █▄█ █▀▄   ██▄ █░▀█ █▀▄ █▄█ █▄▄ █▄▄ █ █░▀█ █▄█   ▄
+
+
+
+                                                                                          Press any key to contine...
+              ");
+              run.Speak("Thank you for enrolling!");
+                  Console.SetCursorPosition(patakilid - 58, Console.CursorTop - 1);
+                  Console.ReadKey();
+                  Thread.Sleep(100); run.Speak("Returning..."); Enroll enrl = new Enroll(); enrl.Display();   
+             }
+
+             if(input == 2){
+              Console.Write(@"
+                                                        Your Enrollment Will be on hold before you make a transaction. Thank you.                             
+                ");
+              run.Speak("Your Enrollment Will be on hold before you make a transaction. Thank you");
+               Console.SetCursorPosition(patakilid - 80, Console.CursorTop - 5);
+              Console.Write(@"
+
+                                                                          
+
+
+
+
+                                                                          
+                                                                           Press any key to continue... 
+              ");
+              Console.ReadKey();
+              Thread.Sleep(100); run.Speak("Returning..."); Enroll enrl = new Enroll(); enrl.Display(); 
+
+             }
+
+              }while(false);
+          }
          public static void TigDelete(){
         Console.ForegroundColor = ConsoleColor.DarkGray;
          Console.WriteLine(@"
@@ -605,7 +1078,7 @@ namespace Online_Enrollment_System{
 
 
 //=============================================================================================//
-          class SecondYear_SecondSem(){
+          public class SecondYear_SecondSem(){
                  static List<string> na_add = new List<string>();
           static List<string> subjectcodes = new List<string> {
     "POLSCI", "IPO220", "COM221", "COM220", "PE4", "PSYCH1", "ARTHUM"
@@ -675,7 +1148,7 @@ namespace Online_Enrollment_System{
 
           while(input == "b"){
 
-            ArtsAndScience it = new ArtsAndScience(); it.Display();
+             Enroll enroll = new Enroll(); enroll.Display(); 
           }
 
 
@@ -726,14 +1199,172 @@ namespace Online_Enrollment_System{
 
   
 
-      public static void DisplaySubjects() {
+     public static void DisplaySubjects() {
+                SpeechSynthesizer run = new SpeechSynthesizer();
+      run.SelectVoiceByHints(VoiceGender.Female);
+      run.Rate = 1;
 
-             Console.Write("YEY");
-             foreach(string input in na_add) {
-              Console.WriteLine(input);
-             }
-             Console.ReadKey();
+              do{
+                   Console.Clear();
+                   Console.ResetColor();
+          Console.ForegroundColor = ConsoleColor.DarkCyan;
+          Console.Write(@"
+
+
+                                                               - T H I S  S U B J E C T  E N L I S T M E N T  I S  I R R E V O C A B L E -
+                                                                                  D O  Y O U  W A N T  T O  C O N T I N U E ? 
+
+                                                                                                  [1] Y E S 
+
+                                                                                                  [2] N O
+
+
+                                                                                            O T H E R  O P T I O N
+                                                                                          -------------------------
+
+                                                                                              [3] R E - E D I T 
+
+
+
+                                                                                 C H O I C E : 
+
+
+
+          
+          ");
+          Console.SetCursorPosition(patakilid - 80, Console.CursorTop - 5);
+          choice = Console.ReadLine();
+
+          while(!double.TryParse(choice,out input) || input < 1 || input > 3){
+
+            Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.Write(@"
+                                                                                               I N V A L I D !       
+            ");
+            run.Speak("Invalid input!");
+           
+
+          }
+
+
+          switch(input){
+
+            case 1: Console.Beep(); Pay(); break; 
+            case 2: Console.Beep(); Thread.Sleep(100); run.Speak("Returning..."); Enroll enrl = new Enroll(); enrl.Display(); break;
+            case 3: Console.Beep(); EnlistSubjects(); break;
+          }
+
+
+        }while(false);
+             
       }
+
+
+          public static void Pay(){
+                        SpeechSynthesizer run = new SpeechSynthesizer();
+      run.SelectVoiceByHints(VoiceGender.Female);
+      run.Rate = 1;
+              do{
+              Console.Clear();
+              Console.ResetColor(); 
+              Console.Write(@"  
+                                                                                S U B J E C T S  E N L I S T E D :
+              ");
+                foreach(string input in na_add) {
+              Console.Write($@"
+                                                                                         
+                                                                                           {input}
+                ");
+             }
+
+             Console.Write(@"
+             
+
+                                                                    E N R O L L M E N T  F E E
+
+                                                                        Choose your payment: 
+                                                                        [1]. GCASH
+                                                                        [2]. Over The Counter
+
+                                                                                  -->: 
+             ");
+              Console.SetCursorPosition(patakilid - 88, Console.CursorTop - 1);
+             choice = Console.ReadLine();
+
+             while(!double.TryParse(choice,out input) || input < 1 || input > 2) {
+
+             Console.ForegroundColor = ConsoleColor.Magenta;
+             Console.Write(@"                                    
+
+                                                                           Invalid Input!
+             
+             ");
+            run.Speak("invalid input!");
+            Pay();
+             }
+
+             if(input == 1){
+              payment: 
+              Console.ResetColor();
+              Console.Write(@"
+                                                                        Enter payment: 
+              ");
+               Console.SetCursorPosition(patakilid - 88, Console.CursorTop - 1);
+              string gcash = Console.ReadLine(); 
+              double pay;
+              while(!double.TryParse(gcash , out pay)){
+
+                run.Speak("Invalid input");
+                goto payment;
+              }
+              if(pay != 500 || pay != 500.00) {
+                      Console.ForegroundColor = ConsoleColor.Magenta;
+                Console.Write(@"
+
+                                                                     Pay only P500.00
+                ");
+                run.Speak("Pay only P500!");
+                goto payment;
+              }
+
+              Console.Write(@"
+                
+                                                                 ▀█▀ █░█ ▄▀█ █▄░█ █▄▀ █▀   █▀▀ █▀█ █▀█   █▀▀ █▄░█ █▀█ █▀█ █░░ █░░ █ █▄░█ █▀▀   █
+                                                                 ░█░ █▀█ █▀█ █░▀█ █░█ ▄█   █▀░ █▄█ █▀▄   ██▄ █░▀█ █▀▄ █▄█ █▄▄ █▄▄ █ █░▀█ █▄█   ▄
+
+
+
+                                                                                          Press any key to contine...
+              ");
+              run.Speak("Thank you for enrolling!");
+                  Console.SetCursorPosition(patakilid - 58, Console.CursorTop - 1);
+                  Console.ReadKey();
+                  Thread.Sleep(100); run.Speak("Returning..."); Enroll enrl = new Enroll(); enrl.Display();   
+             }
+
+             if(input == 2){
+              Console.Write(@"
+                                                        Your Enrollment Will be on hold before you make a transaction. Thank you.                             
+                ");
+              run.Speak("Your Enrollment Will be on hold before you make a transaction. Thank you");
+               Console.SetCursorPosition(patakilid - 80, Console.CursorTop - 5);
+              Console.Write(@"
+
+                                                                          
+
+
+
+
+                                                                          
+                                                                           Press any key to continue... 
+              ");
+              Console.ReadKey();
+              Thread.Sleep(100); run.Speak("Returning..."); Enroll enrl = new Enroll(); enrl.Display(); 
+
+             }
+
+              }while(false);
+          }
 
          public static void TigDelete(){
         Console.ForegroundColor = ConsoleColor.DarkGray;
@@ -784,7 +1415,7 @@ namespace Online_Enrollment_System{
     
 
 
-          class ThirdYear(){
+          public class ThirdYear(){
                  static List<string> na_add = new List<string>();
           static List<string> subjectcodes = new List<string> {
     "STAT", "COM312", "COM311", "CEL311", "IPO310", "PUBAD"
@@ -853,7 +1484,7 @@ namespace Online_Enrollment_System{
 
           while(input == "b"){
 
-            ArtsAndScience it = new ArtsAndScience(); it.Display();
+            Enroll enroll = new Enroll(); enroll.Display(); 
           }
 
 
@@ -904,15 +1535,172 @@ namespace Online_Enrollment_System{
 
   
 
-      public static void DisplaySubjects() {
+    public static void DisplaySubjects() {
+                SpeechSynthesizer run = new SpeechSynthesizer();
+      run.SelectVoiceByHints(VoiceGender.Female);
+      run.Rate = 1;
 
-             Console.Write("YEY");
-             foreach(string input in na_add) {
-              Console.WriteLine(input);
-             }
-             Console.ReadKey();
+              do{
+                   Console.Clear();
+                   Console.ResetColor();
+          Console.ForegroundColor = ConsoleColor.DarkCyan;
+          Console.Write(@"
+
+
+                                                               - T H I S  S U B J E C T  E N L I S T M E N T  I S  I R R E V O C A B L E -
+                                                                                  D O  Y O U  W A N T  T O  C O N T I N U E ? 
+
+                                                                                                  [1] Y E S 
+
+                                                                                                  [2] N O
+
+
+                                                                                            O T H E R  O P T I O N
+                                                                                          -------------------------
+
+                                                                                              [3] R E - E D I T 
+
+
+
+                                                                                 C H O I C E : 
+
+
+
+          
+          ");
+          Console.SetCursorPosition(patakilid - 80, Console.CursorTop - 5);
+          choice = Console.ReadLine();
+
+          while(!double.TryParse(choice,out input) || input < 1 || input > 3){
+
+            Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.Write(@"
+                                                                                               I N V A L I D !       
+            ");
+            run.Speak("Invalid input!");
+           
+
+          }
+
+
+          switch(input){
+
+            case 1: Console.Beep(); Pay(); break; 
+            case 2: Console.Beep(); Thread.Sleep(100); run.Speak("Returning..."); Enroll enrl = new Enroll(); enrl.Display(); break;
+            case 3: Console.Beep(); EnlistSubjects(); break;
+          }
+
+
+        }while(false);
+             
       }
 
+
+          public static void Pay(){
+                        SpeechSynthesizer run = new SpeechSynthesizer();
+      run.SelectVoiceByHints(VoiceGender.Female);
+      run.Rate = 1;
+              do{
+              Console.Clear();
+              Console.ResetColor(); 
+              Console.Write(@"  
+                                                                                S U B J E C T S  E N L I S T E D :
+              ");
+                foreach(string input in na_add) {
+              Console.Write($@"
+                                                                                         
+                                                                                           {input}
+                ");
+             }
+
+             Console.Write(@"
+             
+
+                                                                    E N R O L L M E N T  F E E
+
+                                                                        Choose your payment: 
+                                                                        [1]. GCASH
+                                                                        [2]. Over The Counter
+
+                                                                                  -->: 
+             ");
+              Console.SetCursorPosition(patakilid - 88, Console.CursorTop - 1);
+             choice = Console.ReadLine();
+
+             while(!double.TryParse(choice,out input) || input < 1 || input > 2) {
+
+             Console.ForegroundColor = ConsoleColor.Magenta;
+             Console.Write(@"                                    
+
+                                                                           Invalid Input!
+             
+             ");
+            run.Speak("invalid input!");
+            Pay();
+             }
+
+             if(input == 1){
+              payment: 
+              Console.ResetColor();
+              Console.Write(@"
+                                                                        Enter payment: 
+              ");
+               Console.SetCursorPosition(patakilid - 88, Console.CursorTop - 1);
+              string gcash = Console.ReadLine(); 
+              double pay;
+              while(!double.TryParse(gcash , out pay)){
+
+                run.Speak("Invalid input");
+                goto payment;
+              }
+              if(pay != 500 || pay != 500.00) {
+                      Console.ForegroundColor = ConsoleColor.Magenta;
+                Console.Write(@"
+
+                                                                     Pay only P500.00
+                ");
+                run.Speak("Pay only P500!");
+                goto payment;
+              }
+
+              Console.Write(@"
+                
+                                                                 ▀█▀ █░█ ▄▀█ █▄░█ █▄▀ █▀   █▀▀ █▀█ █▀█   █▀▀ █▄░█ █▀█ █▀█ █░░ █░░ █ █▄░█ █▀▀   █
+                                                                 ░█░ █▀█ █▀█ █░▀█ █░█ ▄█   █▀░ █▄█ █▀▄   ██▄ █░▀█ █▀▄ █▄█ █▄▄ █▄▄ █ █░▀█ █▄█   ▄
+
+
+
+                                                                                          Press any key to contine...
+              ");
+              run.Speak("Thank you for enrolling!");
+                  Console.SetCursorPosition(patakilid - 58, Console.CursorTop - 1);
+                  Console.ReadKey();
+                  Thread.Sleep(100); run.Speak("Returning..."); Enroll enrl = new Enroll(); enrl.Display();   
+             }
+
+             if(input == 2){
+              Console.Write(@"
+                                                        Your Enrollment Will be on hold before you make a transaction. Thank you.                             
+                ");
+              run.Speak("Your Enrollment Will be on hold before you make a transaction. Thank you");
+               Console.SetCursorPosition(patakilid - 80, Console.CursorTop - 5);
+              Console.Write(@"
+
+                                                                          
+
+
+
+
+                                                                          
+                                                                           Press any key to continue... 
+              ");
+              Console.ReadKey();
+              Thread.Sleep(100); run.Speak("Returning..."); Enroll enrl = new Enroll(); enrl.Display(); 
+
+             }
+
+              }while(false);
+          }
          public static void TigDelete(){
         Console.ForegroundColor = ConsoleColor.DarkGray;
          Console.WriteLine(@"
@@ -958,7 +1746,7 @@ namespace Online_Enrollment_System{
 
         }
 
-          class ThirdYear_SecondSem(){
+          public class ThirdYear_SecondSem(){
 
                static List<string> na_add = new List<string>();
           static List<string> subjectcodes = new List<string> {
@@ -1028,7 +1816,7 @@ namespace Online_Enrollment_System{
 
           while(input == "b"){
 
-            ArtsAndScience it = new ArtsAndScience(); it.Display();
+         Enroll enroll = new Enroll(); enroll.Display(); 
           }
 
 
@@ -1080,14 +1868,171 @@ namespace Online_Enrollment_System{
   
 
       public static void DisplaySubjects() {
+                SpeechSynthesizer run = new SpeechSynthesizer();
+      run.SelectVoiceByHints(VoiceGender.Female);
+      run.Rate = 1;
 
-             Console.Write("YEY");
-             foreach(string input in na_add) {
-              Console.WriteLine(input);
-             }
-             Console.ReadKey();
+              do{
+                   Console.Clear();
+                   Console.ResetColor();
+          Console.ForegroundColor = ConsoleColor.DarkCyan;
+          Console.Write(@"
+
+
+                                                               - T H I S  S U B J E C T  E N L I S T M E N T  I S  I R R E V O C A B L E -
+                                                                                  D O  Y O U  W A N T  T O  C O N T I N U E ? 
+
+                                                                                                  [1] Y E S 
+
+                                                                                                  [2] N O
+
+
+                                                                                            O T H E R  O P T I O N
+                                                                                          -------------------------
+
+                                                                                              [3] R E - E D I T 
+
+
+
+                                                                                 C H O I C E : 
+
+
+
+          
+          ");
+          Console.SetCursorPosition(patakilid - 80, Console.CursorTop - 5);
+          choice = Console.ReadLine();
+
+          while(!double.TryParse(choice,out input) || input < 1 || input > 3){
+
+            Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.Write(@"
+                                                                                               I N V A L I D !       
+            ");
+            run.Speak("Invalid input!");
+           
+
+          }
+
+
+          switch(input){
+
+            case 1: Console.Beep(); Pay(); break; 
+            case 2: Console.Beep(); Thread.Sleep(100); run.Speak("Returning..."); Enroll enrl = new Enroll(); enrl.Display(); break;
+            case 3: Console.Beep(); EnlistSubjects(); break;
+          }
+
+
+        }while(false);
+             
       }
 
+
+          public static void Pay(){
+                        SpeechSynthesizer run = new SpeechSynthesizer();
+      run.SelectVoiceByHints(VoiceGender.Female);
+      run.Rate = 1;
+              do{
+              Console.Clear();
+              Console.ResetColor(); 
+              Console.Write(@"  
+                                                                                S U B J E C T S  E N L I S T E D :
+              ");
+                foreach(string input in na_add) {
+              Console.Write($@"
+                                                                                         
+                                                                                           {input}
+                ");
+             }
+
+             Console.Write(@"
+             
+
+                                                                    E N R O L L M E N T  F E E
+
+                                                                        Choose your payment: 
+                                                                        [1]. GCASH
+                                                                        [2]. Over The Counter
+
+                                                                                  -->: 
+             ");
+              Console.SetCursorPosition(patakilid - 88, Console.CursorTop - 1);
+             choice = Console.ReadLine();
+
+             while(!double.TryParse(choice,out input) || input < 1 || input > 2) {
+
+             Console.ForegroundColor = ConsoleColor.Magenta;
+             Console.Write(@"                                    
+
+                                                                           Invalid Input!
+             
+             ");
+            run.Speak("invalid input!");
+            Pay();
+             }
+
+             if(input == 1){
+              payment: 
+              Console.ResetColor();
+              Console.Write(@"
+                                                                        Enter payment: 
+              ");
+               Console.SetCursorPosition(patakilid - 88, Console.CursorTop - 1);
+              string gcash = Console.ReadLine(); 
+              double pay;
+              while(!double.TryParse(gcash , out pay)){
+
+                run.Speak("Invalid input");
+                goto payment;
+              }
+              if(pay != 500 || pay != 500.00) {
+                      Console.ForegroundColor = ConsoleColor.Magenta;
+                Console.Write(@"
+
+                                                                     Pay only P500.00
+                ");
+                run.Speak("Pay only P500!");
+                goto payment;
+              }
+
+              Console.Write(@"
+                
+                                                                 ▀█▀ █░█ ▄▀█ █▄░█ █▄▀ █▀   █▀▀ █▀█ █▀█   █▀▀ █▄░█ █▀█ █▀█ █░░ █░░ █ █▄░█ █▀▀   █
+                                                                 ░█░ █▀█ █▀█ █░▀█ █░█ ▄█   █▀░ █▄█ █▀▄   ██▄ █░▀█ █▀▄ █▄█ █▄▄ █▄▄ █ █░▀█ █▄█   ▄
+
+
+
+                                                                                          Press any key to contine...
+              ");
+              run.Speak("Thank you for enrolling!");
+                  Console.SetCursorPosition(patakilid - 58, Console.CursorTop - 1);
+                  Console.ReadKey();
+                  Thread.Sleep(100); run.Speak("Returning..."); Enroll enrl = new Enroll(); enrl.Display();   
+             }
+
+             if(input == 2){
+              Console.Write(@"
+                                                        Your Enrollment Will be on hold before you make a transaction. Thank you.                             
+                ");
+              run.Speak("Your Enrollment Will be on hold before you make a transaction. Thank you");
+               Console.SetCursorPosition(patakilid - 80, Console.CursorTop - 5);
+              Console.Write(@"
+
+                                                                          
+
+
+
+
+                                                                          
+                                                                           Press any key to continue... 
+              ");
+              Console.ReadKey();
+              Thread.Sleep(100); run.Speak("Returning..."); Enroll enrl = new Enroll(); enrl.Display(); 
+
+             }
+
+              }while(false);
+          }
          public static void TigDelete(){
         Console.ForegroundColor = ConsoleColor.DarkGray;
          Console.WriteLine(@"
@@ -1132,7 +2077,7 @@ namespace Online_Enrollment_System{
     }
         }
 
-         class FourthYear(){
+        public class FourthYear(){
           
              static List<string> na_add = new List<string>();
           static List<string> subjectcodes = new List<string> {
@@ -1199,7 +2144,7 @@ namespace Online_Enrollment_System{
 
           while(input == "b"){
 
-            ArtsAndScience it = new ArtsAndScience(); it.Display();
+            Enroll enroll = new Enroll(); enroll.Display(); 
           }
 
 
@@ -1251,13 +2196,171 @@ namespace Online_Enrollment_System{
   
 
       public static void DisplaySubjects() {
+                SpeechSynthesizer run = new SpeechSynthesizer();
+      run.SelectVoiceByHints(VoiceGender.Female);
+      run.Rate = 1;
 
-             Console.Write("YEY");
-             foreach(string input in na_add) {
-              Console.WriteLine(input);
-             }
-             Console.ReadKey();
+              do{
+                   Console.Clear();
+                   Console.ResetColor();
+          Console.ForegroundColor = ConsoleColor.DarkCyan;
+          Console.Write(@"
+
+
+                                                               - T H I S  S U B J E C T  E N L I S T M E N T  I S  I R R E V O C A B L E -
+                                                                                  D O  Y O U  W A N T  T O  C O N T I N U E ? 
+
+                                                                                                  [1] Y E S 
+
+                                                                                                  [2] N O
+
+
+                                                                                            O T H E R  O P T I O N
+                                                                                          -------------------------
+
+                                                                                              [3] R E - E D I T 
+
+
+
+                                                                                 C H O I C E : 
+
+
+
+          
+          ");
+          Console.SetCursorPosition(patakilid - 80, Console.CursorTop - 5);
+          choice = Console.ReadLine();
+
+          while(!double.TryParse(choice,out input) || input < 1 || input > 3){
+
+            Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.Write(@"
+                                                                                               I N V A L I D !       
+            ");
+            run.Speak("Invalid input!");
+           
+
+          }
+
+
+          switch(input){
+
+            case 1: Console.Beep(); Pay(); break; 
+            case 2: Console.Beep(); Thread.Sleep(100); run.Speak("Returning..."); Enroll enrl = new Enroll(); enrl.Display(); break;
+            case 3: Console.Beep(); EnlistSubjects(); break;
+          }
+
+
+        }while(false);
+             
       }
+
+
+          public static void Pay(){
+                        SpeechSynthesizer run = new SpeechSynthesizer();
+      run.SelectVoiceByHints(VoiceGender.Female);
+      run.Rate = 1;
+              do{
+              Console.Clear();
+              Console.ResetColor(); 
+              Console.Write(@"  
+                                                                                S U B J E C T S  E N L I S T E D :
+              ");
+                foreach(string input in na_add) {
+              Console.Write($@"
+                                                                                         
+                                                                                           {input}
+                ");
+             }
+
+             Console.Write(@"
+             
+
+                                                                    E N R O L L M E N T  F E E
+
+                                                                        Choose your payment: 
+                                                                        [1]. GCASH
+                                                                        [2]. Over The Counter
+
+                                                                                  -->: 
+             ");
+              Console.SetCursorPosition(patakilid - 88, Console.CursorTop - 1);
+             choice = Console.ReadLine();
+
+             while(!double.TryParse(choice,out input) || input < 1 || input > 2) {
+
+             Console.ForegroundColor = ConsoleColor.Magenta;
+             Console.Write(@"                                    
+
+                                                                           Invalid Input!
+             
+             ");
+            run.Speak("invalid input!");
+            Pay();
+             }
+
+             if(input == 1){
+              payment: 
+              Console.ResetColor();
+              Console.Write(@"
+                                                                        Enter payment: 
+              ");
+               Console.SetCursorPosition(patakilid - 88, Console.CursorTop - 1);
+              string gcash = Console.ReadLine(); 
+              double pay;
+              while(!double.TryParse(gcash , out pay)){
+
+                run.Speak("Invalid input");
+                goto payment;
+              }
+              if(pay != 500 || pay != 500.00) {
+                      Console.ForegroundColor = ConsoleColor.Magenta;
+                Console.Write(@"
+
+                                                                     Pay only P500.00
+                ");
+                run.Speak("Pay only P500!");
+                goto payment;
+              }
+
+              Console.Write(@"
+                
+                                                                 ▀█▀ █░█ ▄▀█ █▄░█ █▄▀ █▀   █▀▀ █▀█ █▀█   █▀▀ █▄░█ █▀█ █▀█ █░░ █░░ █ █▄░█ █▀▀   █
+                                                                 ░█░ █▀█ █▀█ █░▀█ █░█ ▄█   █▀░ █▄█ █▀▄   ██▄ █░▀█ █▀▄ █▄█ █▄▄ █▄▄ █ █░▀█ █▄█   ▄
+
+
+
+                                                                                          Press any key to contine...
+              ");
+              run.Speak("Thank you for enrolling!");
+                  Console.SetCursorPosition(patakilid - 58, Console.CursorTop - 1);
+                  Console.ReadKey();
+                  Thread.Sleep(100); run.Speak("Returning..."); Enroll enrl = new Enroll(); enrl.Display();   
+             }
+
+             if(input == 2){
+              Console.Write(@"
+                                                        Your Enrollment Will be on hold before you make a transaction. Thank you.                             
+                ");
+              run.Speak("Your Enrollment Will be on hold before you make a transaction. Thank you");
+               Console.SetCursorPosition(patakilid - 80, Console.CursorTop - 5);
+              Console.Write(@"
+
+                                                                          
+
+
+
+
+                                                                          
+                                                                           Press any key to continue... 
+              ");
+              Console.ReadKey();
+              Thread.Sleep(100); run.Speak("Returning..."); Enroll enrl = new Enroll(); enrl.Display(); 
+
+             }
+
+              }while(false);
+          }
 
          public static void TigDelete(){
         Console.ForegroundColor = ConsoleColor.DarkGray;
@@ -1303,7 +2406,7 @@ namespace Online_Enrollment_System{
         }
 
 
-        class FourthYear_SecondSem() {
+        public class FourthYear_SecondSem() {
 
                static List<string> na_add = new List<string>();
           static List<string> subjectcodes = new List<string> {
@@ -1370,7 +2473,7 @@ namespace Online_Enrollment_System{
 
           while(input == "b"){
 
-            ArtsAndScience it = new ArtsAndScience(); it.Display();
+             Enroll enroll = new Enroll(); enroll.Display(); 
           }
 
 
@@ -1422,13 +2525,171 @@ namespace Online_Enrollment_System{
   
 
       public static void DisplaySubjects() {
+                SpeechSynthesizer run = new SpeechSynthesizer();
+      run.SelectVoiceByHints(VoiceGender.Female);
+      run.Rate = 1;
 
-             Console.Write("YEY");
-             foreach(string input in na_add) {
-              Console.WriteLine(input);
-             }
-             Console.ReadKey();
+              do{
+                   Console.Clear();
+                   Console.ResetColor();
+          Console.ForegroundColor = ConsoleColor.DarkCyan;
+          Console.Write(@"
+
+
+                                                               - T H I S  S U B J E C T  E N L I S T M E N T  I S  I R R E V O C A B L E -
+                                                                                  D O  Y O U  W A N T  T O  C O N T I N U E ? 
+
+                                                                                                  [1] Y E S 
+
+                                                                                                  [2] N O
+
+
+                                                                                            O T H E R  O P T I O N
+                                                                                          -------------------------
+
+                                                                                              [3] R E - E D I T 
+
+
+
+                                                                                 C H O I C E : 
+
+
+
+          
+          ");
+          Console.SetCursorPosition(patakilid - 80, Console.CursorTop - 5);
+          choice = Console.ReadLine();
+
+          while(!double.TryParse(choice,out input) || input < 1 || input > 3){
+
+            Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.Write(@"
+                                                                                               I N V A L I D !       
+            ");
+            run.Speak("Invalid input!");
+           
+
+          }
+
+
+          switch(input){
+
+            case 1: Console.Beep(); Pay(); break; 
+            case 2: Console.Beep(); Thread.Sleep(100); run.Speak("Returning..."); Enroll enrl = new Enroll(); enrl.Display(); break;
+            case 3: Console.Beep(); EnlistSubjects(); break;
+          }
+
+
+        }while(false);
+             
       }
+
+
+          public static void Pay(){
+                        SpeechSynthesizer run = new SpeechSynthesizer();
+      run.SelectVoiceByHints(VoiceGender.Female);
+      run.Rate = 1;
+              do{
+              Console.Clear();
+              Console.ResetColor(); 
+              Console.Write(@"  
+                                                                                S U B J E C T S  E N L I S T E D :
+              ");
+                foreach(string input in na_add) {
+              Console.Write($@"
+                                                                                         
+                                                                                           {input}
+                ");
+             }
+
+             Console.Write(@"
+             
+
+                                                                    E N R O L L M E N T  F E E
+
+                                                                        Choose your payment: 
+                                                                        [1]. GCASH
+                                                                        [2]. Over The Counter
+
+                                                                                  -->: 
+             ");
+              Console.SetCursorPosition(patakilid - 88, Console.CursorTop - 1);
+             choice = Console.ReadLine();
+
+             while(!double.TryParse(choice,out input) || input < 1 || input > 2) {
+
+             Console.ForegroundColor = ConsoleColor.Magenta;
+             Console.Write(@"                                    
+
+                                                                           Invalid Input!
+             
+             ");
+            run.Speak("invalid input!");
+            Pay();
+             }
+
+             if(input == 1){
+              payment: 
+              Console.ResetColor();
+              Console.Write(@"
+                                                                        Enter payment: 
+              ");
+               Console.SetCursorPosition(patakilid - 88, Console.CursorTop - 1);
+              string gcash = Console.ReadLine(); 
+              double pay;
+              while(!double.TryParse(gcash , out pay)){
+
+                run.Speak("Invalid input");
+                goto payment;
+              }
+              if(pay != 500 || pay != 500.00) {
+                      Console.ForegroundColor = ConsoleColor.Magenta;
+                Console.Write(@"
+
+                                                                     Pay only P500.00
+                ");
+                run.Speak("Pay only P500!");
+                goto payment;
+              }
+
+              Console.Write(@"
+                
+                                                                 ▀█▀ █░█ ▄▀█ █▄░█ █▄▀ █▀   █▀▀ █▀█ █▀█   █▀▀ █▄░█ █▀█ █▀█ █░░ █░░ █ █▄░█ █▀▀   █
+                                                                 ░█░ █▀█ █▀█ █░▀█ █░█ ▄█   █▀░ █▄█ █▀▄   ██▄ █░▀█ █▀▄ █▄█ █▄▄ █▄▄ █ █░▀█ █▄█   ▄
+
+
+
+                                                                                          Press any key to contine...
+              ");
+              run.Speak("Thank you for enrolling!");
+                  Console.SetCursorPosition(patakilid - 58, Console.CursorTop - 1);
+                  Console.ReadKey();
+                  Thread.Sleep(100); run.Speak("Returning..."); Enroll enrl = new Enroll(); enrl.Display();   
+             }
+
+             if(input == 2){
+              Console.Write(@"
+                                                        Your Enrollment Will be on hold before you make a transaction. Thank you.                             
+                ");
+              run.Speak("Your Enrollment Will be on hold before you make a transaction. Thank you");
+               Console.SetCursorPosition(patakilid - 80, Console.CursorTop - 5);
+              Console.Write(@"
+
+                                                                          
+
+
+
+
+                                                                          
+                                                                           Press any key to continue... 
+              ");
+              Console.ReadKey();
+              Thread.Sleep(100); run.Speak("Returning..."); Enroll enrl = new Enroll(); enrl.Display(); 
+
+             }
+
+              }while(false);
+          }
 
          public static void TigDelete(){
         Console.ForegroundColor = ConsoleColor.DarkGray;
